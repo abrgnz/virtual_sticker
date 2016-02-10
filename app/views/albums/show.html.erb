@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to "Comprar Paquetes", open_pack_album_path(@album) %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @album.title %>
+</p>
+
+<p>
+  <strong>Sticker number:</strong>
+  <%= @album.sticker_number %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @album.image %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @album.description %>
+</p>
+
+
+<div clas="row">
+  <% @album.stickers.each do |sticker| %>
+    	<div class="col-md-3">
+    		<h2><%= sticker.title %></h2>
+        <h3><%= "x#{sticker.quantity}" if sticker.quantity >0 %></h3>
+    		<p>Number: <%= sticker.number %></p>
+        <% if sticker.quantity == 0 %>
+    		  <img src="<%= sticker.image %>" style="-webkit-filter: grayscale(100%); filter: grayscale(100%);">
+        <% else %>
+          <img src="<%= sticker.image %>">
+        <% end %>
+    	</div>
+  <% end %>
+</div>
+
+
+<%= link_to 'Edit', edit_album_path(@album) %> |
+<%= link_to 'Back', albums_path %>

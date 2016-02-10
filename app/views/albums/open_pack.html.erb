@@ -1,0 +1,11 @@
+  <div class="row">
+    <% @new_stickers.each do |sticker| %>
+    <div class="col-md-4">
+        <h2><%= sticker.title %></h2>
+        <p>Number: <%= sticker.number %></p>
+          <img src="<%= sticker.image %>">
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to "Album", album_path(@new_stickers.first.album) %>

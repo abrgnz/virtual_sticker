@@ -1,0 +1,62 @@
+<%= form_for(@album) do |f| %>
+  <% if @album.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+      <% @album.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :father_id %><br>
+    <%= f.text_field :father_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :sticker_number %><br>
+    <%= f.number_field :sticker_number %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.text_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  
+  <div class="row">
+    <%= f.fields_for :stickers do |sticker_fields| %>
+    <div class="col-md-4">
+      <%= sticker_fields.label :title %>
+      <%= sticker_fields.text_field :title %>
+      <br>
+      <%= sticker_fields.label :description %>
+      <%= sticker_fields.text_field :description %>
+      <br>
+      <%= sticker_fields.label :image %>
+      <%= sticker_fields.text_field :image %>
+      <br>
+      <%= sticker_fields.label :number %>
+      <%= sticker_fields.text_field :number %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
